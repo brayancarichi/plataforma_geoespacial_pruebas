@@ -535,8 +535,8 @@ def main():
         st.sidebar.header("Panel de Control")
 
         st.link_button(
-    label="🚀 Ir a la otra aplicación",
-    url="https://tu-otra-app.streamlit.app",
+    label="Anomalias NDVI",
+    url="plataforma anomalias: https://plataforma-anomalias-ndvi.onrender.com/",
     type="primary",  # Opciones: "primary" o "secondary"
     use_container_width=True,  # Opcional: hace que ocupe todo el ancho disponible
 )
