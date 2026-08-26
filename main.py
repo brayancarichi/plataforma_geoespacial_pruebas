@@ -536,7 +536,7 @@ def main():
 
         st.link_button(
     label="Anomalias NDVI",
-    url="plataforma anomalias: https://plataforma-anomalias-ndvi.onrender.com/",
+    url="https://plataforma-anomalias-ndvi.onrender.com/",
     type="primary",  # Opciones: "primary" o "secondary"
     use_container_width=True,  # Opcional: hace que ocupe todo el ancho disponible
 )
