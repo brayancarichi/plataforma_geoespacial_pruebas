@@ -181,22 +181,30 @@ class GEEAuthManager:
 
         try:
             if gee_json_str:
-                key_content = (
-                    json.loads(gee_json_str)
-                    if isinstance(gee_json_str, str)
-                    else gee_json_str
-                )
+                if isinstance(gee_json_str, str):
+                    # Limpia espacios alrededor y parsea permitiendo caracteres de control como saltos de línea
+                    cleaned_str = gee_json_str.strip()
+                    key_content = json.loads(cleaned_str, strict=False)
+                else:
+                    key_content = gee_json_str
+
                 credentials = ee.ServiceAccountCredentials(
                     key_content["client_email"], key_data=json.dumps(key_content)
                 )
-                ee.Initialize(credentials, project=key_content.get("project_id"))
+                ee.Initialize(
+                    credentials, project=key_content.get("project_id")
+                )
+
             elif credentials_path and os.path.exists(credentials_path):
                 with open(credentials_path, "r") as f:
                     key_content = json.load(f)
                 credentials = ee.ServiceAccountCredentials(
                     key_content["client_email"], key_file=credentials_path
                 )
-                ee.Initialize(credentials, project=key_content.get("project_id"))
+                ee.Initialize(
+                    credentials, project=key_content.get("project_id")
+                )
+
             else:
                 ee.Initialize()
 
@@ -204,7 +212,9 @@ class GEEAuthManager:
             return True
 
         except Exception as e:
-            st.error(f"Error de autenticación en Google Earth Engine API: {str(e)}")
+            st.error(
+                f"Error de autenticación en Google Earth Engine API: {str(e)}"
+            )
             return False
 
 
