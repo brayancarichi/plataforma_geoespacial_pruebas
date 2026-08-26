@@ -534,6 +534,13 @@ def main():
     with tab_municipal:
         st.sidebar.header("Panel de Control")
 
+        st.link_button(
+    label="🚀 Ir a la otra aplicación",
+    url="https://tu-otra-app.streamlit.app",
+    type="primary",  # Opciones: "primary" o "secondary"
+    use_container_width=True,  # Opcional: hace que ocupe todo el ancho disponible
+)
+
         municipio_selected = st.sidebar.selectbox(
             "Seleccionar Municipio:",
             options=sorted(list(MUNICIPIOS_NL.keys())),
